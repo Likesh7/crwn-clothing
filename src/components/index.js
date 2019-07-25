@@ -2,4 +2,8 @@ export { default as MenuItem } from "./menu-item";
 export { default as Directory } from "./directory";
 export { default as CollectionsPreview } from "./collections-preview";
 export { default as CollectionsItem } from "./collections-item";
+export { default as Header } from "./header";
+export { default as SignIn } from "./sign-in";
+export { default as FormInput } from "./form-input";
+export { default as CustomButton } from "./custom-button";
 export { default as Hats } from "./hats";
