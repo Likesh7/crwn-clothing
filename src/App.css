@@ -5,6 +5,17 @@
    License: none (public domain)
 */
 
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background: transparent;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
 html,
 body,
 div,

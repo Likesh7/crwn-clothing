@@ -6,7 +6,7 @@
   margin-bottom: 25px;
 
   .logo-container {
-    width: 70px;
+    width: 100px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -23,6 +23,8 @@
     .navigation {
       padding: 10px 15px;
       text-transform: uppercase;
+      width: 85px;
+      text-align: center;
 
       a {
         color: inherit;

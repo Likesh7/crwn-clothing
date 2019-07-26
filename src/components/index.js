@@ -6,4 +6,5 @@ export { default as Header } from "./header";
 export { default as SignIn } from "./sign-in";
 export { default as FormInput } from "./form-input";
 export { default as CustomButton } from "./custom-button";
+export { default as SignUp } from "./sign-up";
 export { default as Hats } from "./hats";

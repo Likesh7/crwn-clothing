@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { Homepage, Shop, Authentication } from "pages";
 import { Hats, Header } from "components";
-import { auth } from "firebase/firebase.utils.js";
+import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
 import "./App.css";
 
@@ -18,10 +18,28 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log("user", user);
+        userRef.onSnapshot(snapShot => {
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+        });
+      } else {
+        this.setState({
+          currentUser: userAuth
+        });
+      }
     });
   }
 
@@ -32,7 +50,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={Shop} />
