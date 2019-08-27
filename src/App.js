@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { Homepage, Shop, Authentication } from "pages";
 import { Hats, Header } from "components";
+import { Homepage, Shop, Authentication } from "pages";
 import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
 import "./App.css";
@@ -23,17 +23,14 @@ class App extends Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data()
-              }
-            },
-            () => {
-              console.log(this.state);
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
             }
-          );
+          });
+
+          console.log("app state", this.state);
         });
       } else {
         this.setState({

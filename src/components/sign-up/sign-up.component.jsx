@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { FormInput, CustomButton } from "components";
+
+import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
+
 import "./sign-up.styles.scss";
 
 export class SignUp extends Component {
@@ -13,15 +16,30 @@ export class SignUp extends Component {
     };
   }
 
-  submitHandler = e => {
+  submitHandler = async e => {
     e.preventDefault();
 
-    this.setState({
-      displayName: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
+    const { displayName, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("The passwords dont match");
+      return;
+    }
+
+    try {
+      const { user } = auth.createUserWithEmailAndPassword(email, password);
+
+      await createUserProfileDocument(user, { displayName });
+
+      this.setState({
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   changeHandler = e => {
@@ -74,7 +92,7 @@ export class SignUp extends Component {
           <div className="form-group">
             <FormInput
               name="confirmPassword"
-              type="confirmPassword"
+              type="password"
               value={this.state.confirmPassword}
               changeHandler={this.changeHandler}
               label="confirm Password"
@@ -82,7 +100,7 @@ export class SignUp extends Component {
             />
           </div>
 
-          <CustomButton>sign up</CustomButton>
+          <CustomButton type="submit">sign up</CustomButton>
         </form>
       </div>
     );
