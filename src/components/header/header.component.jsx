@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { auth } from "firebase/firebase.utils.js";
@@ -35,4 +37,12 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  currentUser: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);

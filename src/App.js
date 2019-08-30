@@ -1,39 +1,33 @@
+import "./App.css";
+import PropTypes from "prop-types";
+import { Header } from "components";
+import { connect } from "react-redux";
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-
-import { Hats, Header } from "components";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Homepage, Shop, Authentication } from "pages";
+import { setCurrentUser } from "redux/user/user.action";
 import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
-import "./App.css";
-
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null
-    };
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          });
+          const currentUser = {
+            id: snapShot.id,
+            ...snapShot.data()
+          };
+
+          setCurrentUser(currentUser);
         });
       } else {
-        this.setState({
-          currentUser: userAuth
-        });
+        setCurrentUser(userAuth);
       }
     });
   }
@@ -45,15 +39,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={Shop} />
-          <Route exact path="/authentication" component={Authentication} />
+          <Route
+            exact
+            path="/authentication"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/" /> : <Authentication />
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
-export default App;
+// Header.propTypes = {
+//   currentUser: PropTypes.object.isRequired
+// };
+
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(
+  mapStateToProps,
+  { setCurrentUser }
+)(App);
