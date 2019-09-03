@@ -5,3 +5,10 @@ export const toggleCartDropdown = () => {
     type: CartActionTypes.TOGGLE_CART_DROPDOWN
   };
 };
+
+export const addToCart = item => {
+  return {
+    type: CartActionTypes.ADD_TO_CART,
+    payload: item
+  };
+};

@@ -30,4 +30,17 @@
       border: none;
     }
   }
+
+  &.inverted {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    top: 260px;
+
+    &:hover {
+      color: #fff;
+      background-color: #000;
+      border: 0;
+    }
+  }
 }
