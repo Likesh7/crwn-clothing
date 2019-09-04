@@ -1,0 +1,19 @@
+.cart-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .cart-item__image {
+    width: 60px;
+    height: 80px;
+    margin-right: 20px;
+  }
+
+  .cart-item__name {
+    margin-bottom: 6px;
+  }
+}
