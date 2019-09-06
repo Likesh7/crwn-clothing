@@ -3,6 +3,7 @@ import "./cart-items.styles.scss";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { CartItem } from "components";
+import { selectCartItems } from "redux/cart/cart.selectors";
 
 const CartItems = ({ cartItems }) => {
   const cartItemGroup = cartItems.map(cartItem => {
@@ -17,7 +18,7 @@ CartItems.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  cartItems: state.cart.cartItems
+  cartItems: selectCartItems(state)
 });
 
 export default connect(mapStateToProps)(CartItems);
