@@ -43,9 +43,9 @@ const Header = ({ currentUser }) => {
   );
 };
 
-Header.propTypes = {
-  currentUser: PropTypes.object.isRequired
-};
+// Header.propTypes = {
+//   currentUser: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser

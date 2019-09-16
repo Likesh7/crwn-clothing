@@ -11,7 +11,13 @@ const CartItems = ({ cartItems }) => {
     return <CartItem key={cartItem.id} cartItem={cartItem} />;
   });
 
-  return <div className="cart-items scrollbar-item">{cartItemGroup}</div>;
+  let isCartEmpty = cartItems.length ? (
+    cartItemGroup
+  ) : (
+    <span className="cart-empty">your cart is empty!</span>
+  );
+
+  return <div className="cart-items scrollbar-item">{isCartEmpty}</div>;
 };
 
 CartItems.propTypes = {

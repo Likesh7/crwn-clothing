@@ -1,14 +1,17 @@
 import React from "react";
 import "./cart-dropdown.styles.scss";
+import { withRouter } from "react-router-dom";
 import { CustomButton, CartItems } from "components";
 
-const CartDropdown = () => {
+const CartDropdown = ({ history }) => {
   return (
     <div className="cart-dropdown">
       <CartItems />
-      <CustomButton>go to checkout</CustomButton>
+      <CustomButton onClick={() => history.push("/checkout")}>
+        go to checkout
+      </CustomButton>
     </div>
   );
 };
 
-export default CartDropdown;
+export default withRouter(CartDropdown);

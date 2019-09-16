@@ -4,9 +4,9 @@ import { Header } from "components";
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import { createStructuredSelector } from "reselect";
-import { Homepage, Shop, Authentication } from "pages";
 import { setCurrentUser } from "redux/user/user.action";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { Homepage, Shop, Authentication, Checkout } from "pages";
 import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
 class App extends Component {
@@ -44,6 +44,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={Shop} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route
             exact
             path="/authentication"
