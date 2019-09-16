@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { Header } from "components";
 import { connect } from "react-redux";
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 import { Homepage, Shop, Authentication } from "pages";
 import { setCurrentUser } from "redux/user/user.action";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
 class App extends Component {
@@ -60,8 +61,8 @@ class App extends Component {
 //   currentUser: PropTypes.object.isRequired
 // };
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: setCurrentUser
 });
 
 export default connect(

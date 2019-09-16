@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { CartIcon } from "components";
+import { Link } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "redux/user/user.selectors";
 
 import { auth } from "firebase/firebase.utils.js";
 
@@ -45,8 +47,8 @@ Header.propTypes = {
   currentUser: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 export default connect(mapStateToProps)(Header);

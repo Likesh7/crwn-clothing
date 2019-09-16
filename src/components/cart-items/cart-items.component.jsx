@@ -3,6 +3,7 @@ import "./cart-items.styles.scss";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { CartItem } from "components";
+import { createStructuredSelector } from "reselect";
 import { selectCartItems } from "redux/cart/cart.selectors";
 
 const CartItems = ({ cartItems }) => {
@@ -17,8 +18,8 @@ CartItems.propTypes = {
   cartItems: PropTypes.array.isRequired
 };
 
-const mapStateToProps = state => ({
-  cartItems: selectCartItems(state)
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems
 });
 
 export default connect(mapStateToProps)(CartItems);
