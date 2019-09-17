@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import { create } from "handlebars";
 
 export const selectCart = state => state.cart;
 
@@ -18,5 +17,13 @@ export const selectCartItemsCount = createSelector(
   cartItems =>
     cartItems.reduce((totalItems, cartItem) => {
       return totalItems + cartItem.quantity;
+    }, 0)
+);
+
+export const selectTotalPrice = createSelector(
+  [selectCartItems],
+  cartItems =>
+    cartItems.reduce((totalItems, cartItem) => {
+      return totalItems + cartItem.quantity * cartItem.price;
     }, 0)
 );

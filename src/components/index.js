@@ -10,5 +10,6 @@ export { default as FormInput } from "./form-input";
 export { default as CartItems } from "./cart-items";
 export { default as CartDropdown } from "./cart-dropdown";
 export { default as CustomButton } from "./custom-button";
+export { default as CheckoutItem } from "./checkout-item";
 export { default as CollectionsItem } from "./collections-item";
 export { default as CollectionsPreview } from "./collections-preview";
