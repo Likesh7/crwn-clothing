@@ -58,15 +58,8 @@ class App extends Component {
   }
 }
 
-// Header.propTypes = {
-//   currentUser: PropTypes.object.isRequired
-// };
-
 const mapStateToProps = createStructuredSelector({
   currentUser: setCurrentUser
 });
 
-export default connect(
-  mapStateToProps,
-  { setCurrentUser }
-)(App);
+export default connect(mapStateToProps, { setCurrentUser })(App);

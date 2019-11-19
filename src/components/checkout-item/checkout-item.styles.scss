@@ -22,6 +22,19 @@
       width: 23%;
     }
 
+    .item-quantity {
+      display: flex;
+
+      .value {
+        margin: 0 10px;
+      }
+
+      .left-arrow,
+      .right-arrow {
+        cursor: pointer;
+      }
+    }
+
     .item-remove {
       width: 8%;
     }

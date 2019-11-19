@@ -12,3 +12,17 @@ export const addToCart = item => {
     payload: item
   };
 };
+
+export const clearItemFromCart = item => {
+  return {
+    type: CartActionTypes.CLEAR_ITEM_FROM_CART,
+    payload: item
+  };
+};
+
+export const decreaseFromCart = item => {
+  return {
+    type: CartActionTypes.DECREASE_FROM_CART,
+    payload: item
+  };
+};
