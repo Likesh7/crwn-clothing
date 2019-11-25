@@ -13,3 +13,4 @@ export { default as CustomButton } from "./custom-button";
 export { default as CheckoutItem } from "./checkout-item";
 export { default as CollectionsItem } from "./collections-item";
 export { default as CollectionsPreview } from "./collections-preview";
+export { default as CollectionsOverview } from "./collections-overview";

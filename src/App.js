@@ -6,6 +6,7 @@ import React, { Component } from "react";
 import { createStructuredSelector } from "reselect";
 import { setCurrentUser } from "redux/user/user.action";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { selectCurrentUser } from "redux/user/user.selectors";
 import { Homepage, Shop, Authentication, Checkout } from "pages";
 import { auth, createUserProfileDocument } from "firebase/firebase.utils.js";
 
@@ -59,7 +60,7 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: setCurrentUser
+  currentUser: selectCurrentUser
 });
 
 export default connect(mapStateToProps, { setCurrentUser })(App);
