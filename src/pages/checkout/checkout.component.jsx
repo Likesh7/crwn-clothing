@@ -1,8 +1,7 @@
 import React from "react";
 import "./checkout.styles.scss";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { CheckoutItem } from "components";
+import { CheckoutItem, StripeButton } from "components";
 import { createStructuredSelector } from "reselect";
 import { selectCartItems, selectTotalPrice } from "redux/cart/cart.selectors";
 
@@ -24,13 +23,15 @@ const Checkout = ({ cartItems, totalPrice }) => {
       <div className="checkout-page__total">
         <span>total: ${totalPrice}</span>
       </div>
+      <span className="payment-warning">
+        *Please use the following test credit card for payments*
+        <br />
+        4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+      </span>
+      <StripeButton price={totalPrice} />
     </div>
   );
 };
-
-// Checkout.propTypes = {
-//   cartItems: PropTypes.array.isRequired
-// };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
