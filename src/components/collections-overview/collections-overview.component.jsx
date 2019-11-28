@@ -13,7 +13,7 @@ const CollectionsOverview = ({ collections }) => {
         <CollectionsPreview key={id} title={title} items={items} />
       ))}
     </div>
-  );
+  ); 
 };
 
 const mapStateToProps = createStructuredSelector({
